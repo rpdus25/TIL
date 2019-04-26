@@ -1,11 +1,9 @@
 # 1. JavaScript 역사
-****
 * 참고 
     * https://wit.nts-corp.com/2014/08/13/1925
     * https://ko.wikipedia.org/wiki/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8
 
 # 2. 값, 식, 문
-****
 * 참고 
     * https://www.bsidesoft.com/?p=792#%25eb%25ac%25b8%25ec%2597%2590-%25eb%258c%2580%25ed%2595%25b4
     * https://webclub.tistory.com/114
