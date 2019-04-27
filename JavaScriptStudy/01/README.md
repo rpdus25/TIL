@@ -4,6 +4,16 @@
     * https://ko.wikipedia.org/wiki/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8
 
 # 2. 값, 식, 문
+## 2.1 값(Value)
+더이상 나눌 수 없는 값
+
+## 2.2 식(Expression)
+어떠한 값을 수렴한다.
+4+4;
+
+## 2.3 문(Statement)
+
+
 * 참고 
     * https://www.bsidesoft.com/?p=792#%25eb%25ac%25b8%25ec%2597%2590-%25eb%258c%2580%25ed%2595%25b4
     * https://webclub.tistory.com/114
@@ -31,6 +41,10 @@
 ## 4.1  Truthy 
 참 같은 값(Truthy)인 값이란 불리언을 기대하는 문맥에서 true로 평가되는 값
  따로 거짓 같은 값으로 정의된 값이 아니면 모두 참 같은 값으로 평가됩니다.
+ * true
+ * string
+ * {}
+ 
 ## 4.2 Falsy
 불리언 문맥에서 false로 평가되는 값입니다.
 JavaScript는 조건절, 반복문 등 불리언 값이 필요한 곳에서 형 변환을 이용해 특정 값을 불리언 값으로 변환합니다.
