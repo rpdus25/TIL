@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    const MSG = {
+        NOT_INFO : '정보를 입력해주세요.',
+        NOT_CORRECT_INFO : '올바른 정보를 입력해주세요.',
+        NOT_PW : '비번이 없습니다.',
+        NOT_CORRECT_INFO_2 : '정보가 일치하지 않습니다.',
+        SUCCESS : "성공!"
+    }
+
+    function auth(id, pw) {
+        const USER_ID = "test";
+        const USER_PW = "1234";
+        const isNotInfo = (!id && !pw);
+        const isNotStr = (typeof id !== 'string');
+        const isCorrectInfo = (id === USER_ID && pw === USER_PW);
+
+        if(isNotInfo) return MSG.NOT_INFO;
+        if(isNotStr) return MSG.NOT_CORRECT_INFO;
+        if(!pw) return isPw;
+        return isCorrectInfo ? MSG.SUCCESS : NOT_CORRECT_INFO_2;
+    }
+
+    // auth("아이디"); // 비번이 없습니다.
+    // auth(); // 정보를 입력해주세요.
+    // auth([1,2,3,4]); // 올바른 정보를 입력해주세요
+    // auth("아이디","비번"); // Ok 성공
+    // auth("아이디","비번"); // No 정보가 일치하지 않습니다.
+    </script>
+</body>
+</html>
