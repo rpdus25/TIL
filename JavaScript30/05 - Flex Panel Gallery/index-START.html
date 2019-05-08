@@ -75,7 +75,6 @@
         margin: 0;
         width: 100%;
         transition: transform 0.5s;
-        border: 1px solid red;
         display: flex;
         flex: 1 0 auto;
         justify-content: center;
@@ -83,8 +82,8 @@
     }
 
     .panel > *:first-child {
-         transform: translateY(-100%);
-     }
+        transform: translateY(-100%);
+    }
 
     .panel.open-active > *:first-child {
         transform: translateY(0);
@@ -110,9 +109,15 @@
     }
 
     .panel.open {
+        flex: 5;
         font-size: 40px;
     }
 
+    @media only screen and (max-width: 600px) {
+        .panel p {
+            font-size: 1em;
+        }
+    }
 </style>
 
 
@@ -143,6 +148,28 @@
         <p>Motion</p>
     </div>
 </div>
+
+<script>
+    const panels = document.querySelectorAll('.panel');
+
+    function toggleOpen() {
+        this.classList.toggle('open');
+    }
+
+    function toggleActive(e) {
+        // console.log(e.propertyName); // font-size, flex-grow
+        if (e.propertyName.includes('flex')) {
+            this.classList.toggle('open-active');
+        }
+    }
+
+    // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+    // forEach() 메서드는 주어진 함수를 배열 요소 각각에 대해 실행합니다.
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+
+
+</script>
 
 <script>
 

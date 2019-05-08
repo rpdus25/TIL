@@ -1,21 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Type Ahead 👀</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Type Ahead 👀</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <form class="search-form">
+<form class="search-form">
     <input type="text" class="search" placeholder="City or State">
     <ul class="suggestions">
-      <li>Filter for a city</li>
-      <li>or a state</li>
+        <li>Filter for a city</li>
+        <li>or a state</li>
     </ul>
-  </form>
+</form>
 <script>
-const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+    const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+    const cities = [];
+
+    // const prom = fetch(endpoint);
+    // console.log(prom)
+
+    // Fetch API는 네트워크 통신을 포함한 리소스 취득을 위한 인터페이스가 정의되어 있습니다.
+    // XMLHttpRequest와 같은 비슷한 API가 존재합니다만, 새로운 Fetch API는 좀더 강력하고 유연한 조작이 가능합니다.
+
+
+    // fetch(endpoint).then(blob => console.log(blob));
+    fetch(endpoint)
+        .then(blob => blob.json())
+        // .then(data => console.log(data))
+        .then(data => cities.push(...data));
+
+    function findMatches(wordToMatch, cities) {
+        return cities.filter(place => {
+            // 여기서 우리는 도시 나 국가가 검색된 것과 일치하는지 알아 내야합니다.
+
+            // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+            // new RegExp(pattern[, flags])  : 생성자로 만들때
+            // g : global match; 일치하는 첫 번째 문자에서 멈추지 않고 전체에서 일치하는 모든 문자를 검색합니다.
+            // i : ignore case(대소문자를 구별하지 않습니다.)
+            // m : multiline; 시작 혹은 끝 문자 탐색(^ and $)이 다중행에 적용되도록 합니다.
+            // (예로,  \n 혹은 \r로 개행된 각각의 라인 시작 혹은 끝 뿐만 아니라, 전체 입력 문자의 시작 혹은 끝에서 일치합니다.
+            // y : 대상 문자열에있는이 정규 표현식의 lastIndex 속성에 의해 지정된 인덱스에서만 일치하며 이후의 모든 인덱스에서 일치 시키려고 시도하지 않습니다.
+
+            const regex = new RegExp(wordToMatch, 'gi');
+            return place.city.match(regex) || place.state.match(regex)
+        });
+    }
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    function displayMatches() {
+        // console.log(this.value);
+        const matchArray = findMatches(this.value, cities);
+        // console.log(matchArray);
+        const html = matchArray.map(place => {
+            const regex = new RegExp(this.value, 'gi');
+            const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
+            const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
+            return `
+            <li>
+                <span class="name">${cityName}, ${stateName}</span>
+                <span class="population">${numberWithCommas(place.population)}</span>
+            </li>
+           `;
+        }).join('');
+        suggestions.innerHTML = html;
+    }
+
+    const searchInput = document.querySelector('.search');
+    const suggestions = document.querySelector('.suggestions');
+
+    searchInput.addEventListener('change', displayMatches);
+    searchInput.addEventListener('keyup', displayMatches);
+
 
 </script>
 </body>
