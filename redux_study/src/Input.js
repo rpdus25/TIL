@@ -7,9 +7,7 @@ const Input = () => {
   const dispatch = useDispatch();
   const onKeyDown = (e) => {
       if (e.key === "Enter" && value.trim()) {
-        console.log(value);
           dispatch(addInput(e));
-          
       }
   }
 
