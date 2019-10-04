@@ -5,3 +5,6 @@
 
 ## 2. JavaScriptStudy
 * JavaScript 이론 공부
+
+## 3. redux_study
+* react hook과 redux로 todolist 만들어보기 연습중~
