@@ -9,6 +9,8 @@ const initialState = {
   export const CHANGE_INPUT = "CHANGE_INPUT";
   export const ADD_INPUT = "ADD_INPUT";
   export const Toggle_COMPLETED_INPUT = "Toggle_COMPLETED_INPUT";
+  export const REMOVE_INPUT = "REMOVE_INPUT";
+
 
   export const changeInput = e => ({
     type: CHANGE_INPUT,
@@ -25,6 +27,11 @@ const initialState = {
     type: Toggle_COMPLETED_INPUT,
     id
   });
+
+  export const removeInput = id => ({
+    type: REMOVE_INPUT,
+    id
+  });
   
 
   const reducer = (state = initialState, action) => {
@@ -35,12 +42,8 @@ const initialState = {
         return {...state, value:"", list:[...state.list, {id:action.id, text:action.value, completed:false}]}
       case Toggle_COMPLETED_INPUT:
         return {...state, value:"", list: state.list.map(todo => todo.id === action.id ? {...todo, completed:!todo.completed} : todo)}
-        console.log(state.list.map(todo => todo.id === action.id ? {...todo, completed:!todo.completed} : todo));
-        // return state.list.map(todo =>
-         
-        //   // todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
-        // )
-        return state;
+      case REMOVE_INPUT:
+        return {...state, value:"", list: state.list.filter(todo => todo.id !== action.id)};
       default:
         return state;
     }
