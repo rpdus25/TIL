@@ -10,4 +10,4 @@
 * react hook과 redux로 todolist 만들어보기 연습중~
 
 
-<a href="https://codesandbox.io/s/fervent-hooks-xbigs" target="_blank"></a>
+<a href="https://codesandbox.io/s/fervent-hooks-xbigs" target="_blank">링크이동</a>
